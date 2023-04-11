@@ -93,10 +93,10 @@ WSGI_APPLICATION = 'chronicles.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': f"django.db.backends.{config('DATABASE_ENGINE','sqlite3')}",
-        'NAME': config('DATABASE_NAME',BASE_DIR / 'db.sqlite3'),
-        'USER': config('DATABASE_USER',''),
-        'PASSWORD': config('DATABASE_PASSWORD',''),
+        'ENGINE': f"django.db.backends.{config('DATABASE_ENGINE') or 'sqlite3'}",
+        'NAME': config('DATABASE_NAME') or BASE_DIR / 'db.sqlite3',
+        'USER': config('DATABASE_USER'),
+        'PASSWORD': config('DATABASE_PASSWORD'),
         'HOST': config('DATABASE_HOST','localhost'),
         'PORT': config('DATABASE_PORT',3306),
     }
