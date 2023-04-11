@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block css %}
+<script type="module" src="{% static 'js/consultation.js' %}"></script>
+<link rel="stylesheet" href="{% static 'css/consultation.css' %}">
+{% endblock %}
+
+
+{% block content %}
+
+  <h1 style="text-align:center;padding-bottom:5px;font-size:1.2rem" class='consult-header'>Consultations</h1>
+  <section>
+    {% include 'components/tab_interface.html' with tabs=tabs %}
+    </section>
+    
+{% endblock %}

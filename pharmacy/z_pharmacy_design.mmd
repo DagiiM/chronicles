@@ -1,0 +1,87 @@
+
+classDiagram
+    class Medication {
+        name: string
+        formulation: string
+        quantity: int = 0
+        threshold: int = 10
+        unit_price: decimal
+        manufacturer: string
+        supplier: string
+        description: string
+        created_at: datetime
+        updated_at: datetime
+        is_low_on_stock(): bool
+        __str__(): string
+    }
+
+    class MedicationAvailability {
+        medication: Medication
+        clinic: Clinic
+        is_available: bool = False
+        __str__(): string
+    }
+
+    class Order {
+        medication: Medication
+        quantity: int
+        unit_price: decimal
+        supplier: string
+        ordered_at: datetime
+        create_order(clinic: Clinic, medication_name: string, quantity: int): Order
+    }
+
+    class Delivery {
+        medication: Medication
+        order: Order
+        quantity: int
+        unit_price: decimal
+        received_at: datetime
+        __str__(): string
+    }
+
+    class Treatment {
+        medication: Medication
+        dosage: decimal
+        start_date: datetime
+        end_date: datetime
+        staff: Staff
+        clinic: Clinic
+        __str__(): string
+        get_duration(): duration
+        clean(): None
+        create_prescription(): Prescription
+    }
+
+    class Prescription {
+        appointments: Appointment[*]
+        medical_records: MedicalRecord[*]
+        treatment: Treatment
+        duration: duration
+        refill_quantity: int = 0
+        refillable: bool = True
+        __str__(): string
+    }
+
+    class PrescriptionRefill {
+        prescription: Prescription
+        patient: Patient
+        date_requested: datetime
+        status: string = 'PENDING'
+        __str__(): string
+        remaining_refills: int
+    }
+
+    MedicationAvailability --> Medication
+    MedicationAvailability --> Clinic
+    Order --> Medication
+    Delivery --> Medication
+    Delivery --> Order
+    Treatment --> Medication
+    Treatment --> Staff
+    Treatment --> Clinic
+    Prescription --> Appointment
+    Prescription --> MedicalRecord
+    Prescription --> Treatment
+    PrescriptionRefill --> Prescription
+    PrescriptionRefill --> Patient

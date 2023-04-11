@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<section class="contact-card">
+    <div class="contact-card__header">
+      <img class="contact-card__image" src="{% static 'icons/douglas.png' %}" alt="Profile Image" />
+      <h1 class="contact-card__name">Douglas Mutethia</h1>
+    </div>
+    <article class="contact-card__body">
+      <p class="contact-card__email"><i class="icon-email"></i>douglasmutethia2017@gmail.com</p>
+      <p class="contact-card__course">
+        Graduate Electrical & Electronics Engineering</p>
+      <p class="contact-card__professional-interests">
+        <i class="icon-build_circle"></i>
+        Professional Interests: Telecommunication, Data science, Full-stack Web design, Internet of Things, Networking, Linux System Administration
+      </p>
+      <p class="contact-card__technical-skills">
+        <i class="icon-miscellaneous_services"></i>
+        Technical Skills and Tools: Atmel7, Proteus, Vs Code, Putty, Python, Django, PHP, Laravel, Jupyter Notebook, Kaggle, ML & Deep Learning, Google Colab, C++, C, SQL, HTML5, CSS3, Vanilla js, Bootstrap, Basic Bash
+      </p>
+      <p class="contact-card__location"><i class="icon-location_on"></i>Lives in: Machakos Town</p>
+    </article>
+    <footer class="contact-card__footer">
+      <p class="contact-card__quote">"The only way to do great work is to love what you do." - Steve Jobs</p>
+    </footer>
+</section>
+  
+  
+<section class="hire-request-container">
+        <h2 class="text-center" style="color:var(--brand-color)">HIRE REQUEST FORM</h2>
+    <form id="hire-request">
+      <label for="firstname">First Name:</label><br>
+      <input type="text" id="firstname" name="firstname" pattern="[A-Za-z\s]+" required autofocus placeholder="Enter your first name"><br>
+      <label for="lastname">Last Name:</label><br>
+      <input type="text" id="lastname" name="lastname" pattern="[A-Za-z\s]+" required placeholder="Enter your last name"><br>
+      <label for="phone">Phone:</label><br>
+      <input type="tel" id="phone" name="phone" required placeholder="Enter your phone number"><br>
+      <label for="email">Email:</label><br>
+      <input type="email" id="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required placeholder="Enter your email address"><br>
+      <label for="company">Company (optional):</label><br>
+      <input type="text" id="company" name="company" pattern="[A-Za-z\s]+" placeholder="Enter your company name"><br>
+      <label for="project">Project:</label><br>
+      <textarea id="project" name="project" required placeholder="Enter your project details"></textarea><br>
+      <button type="submit" id="send-hire-request">
+        <span id='submit-button-text'>Send Hire Request</span>
+        <img src="{% static 'icons/ripple.svg' %}" alt="loading" id="loading-data" style="display:none;">
+      </button>
+    </form> 
+  </section>
+  
+  
+  <script>
+    const form = document.getElementById('hire-request');
+    const loadingData = document.getElementById('loading-data');
+    const submitButton = document.getElementById('send-hire-request');
+    const submitButtonText = document.getElementById('submit-button-text');
+    
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+    
+      // show the loading image
+      loadingData.style.display = 'inline';
+      submitButtonText.style.display = 'none';
+      submitButton.setAttribute('disabled', true);
+    
+      // get the form data
+      const formData = new FormData(form);
+    
+      // send the POST request
+      fetch("{% url 'hire_request' %}", {
+        method: 'POST',
+        body: formData
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+    
+          // hide the loading image
+          loadingData.style.display = 'none';
+          submitButtonText.style.display = 'inline';
+          submitButton.setAttribute('disabled', false);
+    
+          // show a success or error message
+          if (data.success) {
+            showAlert('success','Your request has been')
+          } else {
+            showAlert('error','There was an error sending your request. Try again.');
+          }
+        });
+    });
+    
+    </script>
+
+{% endblock %}

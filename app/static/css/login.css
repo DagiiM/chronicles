@@ -1,0 +1,85 @@
+/* Styles for the form container */
+.login-container {
+    max-width: 400px;
+    width:40%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+
+    /* Center the container horizontally */
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+@media (max-width: 768px) {
+    .login-container {
+        max-width:98%;
+        width:80%;
+    }
+}
+@media (max-width: 480px) {
+    .login-container {
+        max-width:98%;
+        width:96%;
+    }
+}
+
+/* Styles for the form header */
+.login-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.login-header h2 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333333;
+}
+
+/* Styles for the form fields */
+.login-field {
+  margin-bottom: 15px;
+}
+
+.login-field label {
+  display: block;
+  font-size: 16px;
+  font-weight: bold;
+  color: #333333;
+  margin-bottom: 5px;
+}
+
+.login-field input {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #cccccc;
+}
+
+/* Styles for the submit button */
+.login-submit {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: var(--brand-color);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top:15px;
+}
+
+/* Styles for error messages */
+.login-error {
+  color: #ff0000;
+  margin-top: 10px;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+}

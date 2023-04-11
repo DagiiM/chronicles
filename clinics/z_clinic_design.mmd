@@ -1,0 +1,72 @@
+classDiagram
+    class Clinic {
+        <<Searchable>>
+        - name: str
+        - country
+        - is_active: bool
+        - created_at: datetime
+        - updated_at: datetime
+        - created_by
+        - approved_by
+        - fields_to_return
+        --
+        + __str__()
+        + get_location() : Union[None, Location]
+        + get_nearby_clinics(user_location, radius=10): Queryset[Clinic]
+        + get_basic_info(): Union[None, BasicInfo]
+        + get_management(): Union[None, Management]
+        + get_full_capacity_days(appointment_type: 'AppointmentType', days: int=30): List[date]
+    }
+    class CountryField
+    class User
+    class Location
+    class BasicInfo
+    class Management
+    class ClinicAvailability
+    class Holiday
+    class AppointmentType {
+        - name: str
+        - description: str
+        - max_slots: int
+        --
+        + __str__()
+        + get_charge() -> Union[None, float]
+        + get_available(clinic: Clinic) -> List[AppointmentType]
+    }
+    class Appointment {
+        - clinic: Clinic
+        - staff: Staff
+        - patient: Union[Patient, User]
+        - start_time: datetime
+        - end_time: datetime
+        - appointment_date: datetime
+        - weight: int
+        - rating: float
+        - status: AppointmentStatus
+        - appointment_type:AppointmentType
+        - appointment_reason
+        --
+        + __str__()
+        + get_duration() -> int
+        + get_charge() -> Decimal
+        + latest_verified_about() -> Union[None, About]
+        + rate(patient: Union[Patient, User], rating: float) -> None
+        + get_upcoming_appointments_for_staff(staff: Staff, days: int = 7) -> QuerySet
+        + get_upcoming_appointments_for_patient(patient: Union[Patient, User], days: int = 7) -> QuerySet
+        + get_appointments_for_staff(staff: Staff) -> QuerySet
+        + get_appointments_for_patient(patient: Union[Patient, User]) -> QuerySet
+    }
+    Clinic --|> CountryField
+    Clinic --|> User: created_by
+    Clinic --|> User: approved_by
+    Clinic --|> Location
+    Clinic --|> BasicInfo
+    Clinic --|> Management
+    ClinicAvailability --|> Clinic
+    ClinicAvailability --|> AppointmentType
+    ClinicAvailability ..> Appointment: has appointments
+    Holiday --|> Clinic
+    Appointment --|> Clinic
+    Appointment --|> AppointmentType
+    Appointment --|> User: patient
+

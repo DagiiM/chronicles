@@ -1,0 +1,16 @@
+
+<div class="tab">
+    {% for tab in tabs %}
+      <button class="tablinks {% if forloop.first %}active{% endif %}" onclick="openTab(event, '{{ tab.id }}')">{{ tab.title }}</button>
+    {% endfor %}
+  </div>
+  
+  {% for tab in tabs %}
+    <div id="{{ tab.id }}" class="tabcontent" {% if forloop.first %}style="display: block;"{% endif %}>
+      {% include tab.template_name %}
+    </div>
+  {% endfor %}
+
+
+
+  

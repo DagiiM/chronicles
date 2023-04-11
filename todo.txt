@@ -1,0 +1,23 @@
+python -m venv venv
+source venv/Scripts/activate #-> Windows
+source venv/bin/activate #-> Ubuntu
+pip install django
+pip install django-redis
+pip install python-decouple
+pip  install djangorestframework
+python -m pip install Pillow
+pip install django-map-widgets
+pip install django-google-maps
+pip install django-formtools
+pip install django-scheduler
+pip install holidays
+pip install requests
+pip install geopy
+pip install django-fsm
+pip install django-fsm-log
+pip install openai
+pip install tenacity
+#sudo apt-get install gdal-bin libgdal-dev #-> Ubuntu,#locate libgdal
+pip install django-ckeditor
+
+pip freeze > requirements.txt

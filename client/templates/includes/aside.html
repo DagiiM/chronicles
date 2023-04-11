@@ -1,0 +1,123 @@
+{% load static %}
+<aside class='aside'>
+    <ul>
+      <li class="brand-aside-nav" style="background-color:transparent">
+
+          <img src="{% static 'icons/logo.png' %}" alt="site-logo" style="width:var(--nav-height);height:var(--nav-height)"/>
+          <span class="text" style="font-size:20px">Eleso Ltd</span>
+
+          <span class="toggle">
+            <i class="icon-keyboard_arrow_right"></i>          
+          </span>
+      </li>
+      
+      {% if user.is_authenticated %}
+      <li class="profile-card" style="display:none">
+        <img src="{% static 'icons/avatar.svg' %}" alt="avatar" class="profile-card__avatar" />
+        <div class="profile-card__info">
+          <h2 class="profile-card__fullname">{{user.firstname}} {{user.lastname}}</h2>
+          <p class="profile-card__email">{{user.email}}</p>
+        </div>
+      </li>
+   {% endif %}
+      
+     
+      <li class="search-box">
+        <a href="#">
+        <i class="icon icon-search"></i> 
+        <input type="search" placeholder="Search..." autocomplete="off"/>
+      </a>
+      </li>
+
+      <li>
+        <a href="{% url 'dashboard' %}">
+        <i class="icon icon-home"></i> 
+        <span class="text">Dashboard</span>
+      </a>
+      </li>
+
+      <li>
+        <a href="{% url 'notification' %}">
+        <i class="icon icon-notifications_none"></i> 
+        <span class="text">Notifications</span>
+      </a>
+      </li>
+
+      <li>
+        <a href="{% url 'clinic' %}">
+        <i class="icon icon-medical_services"></i> 
+        <span class="text">Clinics</span>
+      </a>
+      </li>
+
+      <li>
+        <a href="{% url 'appointment' %}">
+        <i class="icon icon-book_online"></i> 
+        <span class="text">Appointments</span>
+      </a>
+      </li>
+
+      <li>
+        <a href="{% url 'medicalrecords' %}">
+        <i class="icon icon-notifications_none"></i> 
+        <span class="text">Medical Records</span>
+      </a>
+      </li>
+
+      <li>
+        <a href="{% url 'consultations' %}">
+        <i class="icon icon-chat_bubble_outline"></i> 
+        <span class="text">Consultations</span>
+      </a>
+      </li>
+        
+
+    </ul>
+
+    <ul style="margin-top: 10px;">
+             
+        {% if user.is_authenticated %}
+        <li>
+          <a href="{% url 'support' %}">
+            <i class="icon icon-support_agent"></i>
+            <span class="text">Support</span>
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'logout' %}">
+            <i class="icon icon-logout"></i>
+            <span class="text">Logout</span>
+          </a>
+        </li>
+          {% else %}
+          <li>
+            <a href="{% url 'register' %}">
+              <i class="icon icon-support_agent"></i>
+              <span class="text">Create Account</span>
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'view_login' %}">
+              <i class="icon icon-login"></i>
+              <span class="text">Login</span>
+            </a>
+          </li>
+      {% endif %}
+
+        <li class="mode">
+
+            <div class="moon-sun">
+              <i class="icon icon-support_agent moon"></i>
+              <i class="icon icon-wb_sunny sun"></i>
+            </div>
+            
+            <span class="mode-text text">Dark Mode</span>
+
+            <div class="toggle-switch">
+              <span class="switch"></span>
+            </div>
+
+        </li>
+
+     </ul>
+</aside>

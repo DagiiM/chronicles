@@ -1,0 +1,386 @@
+
+{% extends "guest.html" %}
+{% load static %}
+
+{% block style %}
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+  }
+  
+  form {
+    margin: 20px auto;
+    max-width: 600px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  h1 {
+    margin: 0 0 20px;
+    text-align: center;
+  }
+  
+  .form-section {
+    display: none;
+  }
+  
+  .form-section.current {
+    display: block;
+  }
+  
+  .form-section h2 {
+    margin: 0 0 20px;
+  }
+  
+  .form-section label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  .form-section input[type="text"],
+  .form-section input[type="email"],
+  .form-section input[type="tel"],
+  .form-section input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .form-section input[type="submit"] {
+    background-color: var(--brand-color);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .form-section input[type="submit"]:hover {
+    background-color: #827716;
+  }
+  
+  .button-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .progress-bar {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f5f5f5;
+    border-radius: 5px;
+    height: 20px;
+    padding: 0 10px;
+  }
+  
+  .progress-step {
+    width: 20px;
+    height: 20px;
+    background-color: #ddd;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    font-weight: bold;
+    color: #555;
+    text-align: center;
+    cursor: pointer;
+  }
+  
+  .progress-step.active {
+    background-color: var(--brand-color);
+    color: #fff;
+  }
+  
+  .prev-button,.register-button,
+  .next-button {
+    background-color: #ccc;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  .next-button,.register-button {
+    background-color: var(--brand-color);
+  }
+  
+  .prev-button:disabled,
+  .next-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  .prev-button:hover,
+  .next-button:hover {
+    background-color: #555;
+  }
+  
+  
+  
+{% endblock %}
+
+{% block content %}
+
+<form action="/api/users" method="post">
+      {% csrf_token %}
+    <div class="progress-bar">
+        <div class="progress" id="progress"></div>
+        <div class="progress-step" id="personal-info-step">1</div>
+        <div class="progress-step" id="account-info-step">2</div>
+      </div>
+
+    <div class="form-section" id="personal-info">
+      <h2>Step 1: Personal Information</h2>
+      <label for="firstname">First Name:</label>
+      <input type="text" id="firstname" name="first_name" pattern="[A-Za-z]{1,32}" required><br>
+  
+      <label for="lastname">Last Name:</label>
+      <input type="text" id="lastname" name="last_name" pattern="[A-Za-z]{1,32}" required><br>
+  
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required><br>
+  
+      <div class="button-row">
+        <button type="button" class="prev-button" disabled>Previous</button>
+        <div class="" style="display:flex;justify-content:space-between;align-items:center;padding-inline: 2%;">
+          <a href="{% url 'view_login' %}" style="">Login</a>
+        </div>
+        <button type="button" class="next-button" onclick="nextSection()">Next</button>
+      </div>
+    </div>
+  
+    <div class="form-section" id="account-info">
+      <h2>Step 2: Account Information</h2>
+
+      <label for="password">Password:</label>
+      
+      <input type="password" id="password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
+      title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" 
+      required><br>
+  
+      <label for="password-confirm">Confirm Password:</label>
+      <input type="password" id="password-confirm" name="password_confirm" required><br>
+
+      <div class="" style="display:flex;justify-content:center;align-items:center;padding-inline: 2%;">
+        <a href="{% url 'view_login' %}" style="padding-right:15px">Login</a>
+        <div>
+        <input type="checkbox" name="terms_and_conditions"/>
+        <a href="{% url 'privacy_policy' %}" style="padding-left:3px">Terms and Conditions</a>
+        </div>
+      </div>
+    
+      <div class="button-row">
+        <button type="button" class="prev-button" onclick="prevSection()">Previous</button>
+        
+        <button type="submit" class="register-button">Register</button>
+      </div>
+    </div>
+
+  </form>
+  
+{% endblock %}
+
+
+  {% block js%}
+    const form = document.querySelector('form');
+    const progress = document.querySelector('#progress');
+    const personalInfo = document.querySelector('#personal-info');
+    const accountInfo = document.querySelector('#account-info');
+    const prevButton = document.querySelector('.prev-button');
+    const nextButton = document.querySelector('.next-button');
+    const steps = document.querySelectorAll('.progress-step');
+    
+    let currentSection = 0;
+    
+    // Get the submit button element
+const submitButton = form.querySelector('button[type="submit"]');
+
+// Get all required fields
+const requiredFields = form.querySelectorAll('[required]');
+
+// Add input event listener to all required fields
+requiredFields.forEach((field) => {
+  field.addEventListener('input', () => {
+    // Disable the submit button if any required field is empty
+    let allFieldsFilled = true;
+    requiredFields.forEach((field) => {
+      if (!field.value) {
+        allFieldsFilled = false;
+      }
+    });
+    if (allFieldsFilled) {
+      submitButton.removeAttribute('disabled');
+    } else {
+      submitButton.setAttribute('disabled', true);
+    }
+  });
+});
+
+    // Update the progress bar
+    function updateProgress() {
+      const progressPercent = (currentSection / (steps.length - 1)) * 100;
+      progress.style.width = `${progressPercent}%`;
+    
+      // Update the active step indicator
+      steps.forEach((step, index) => {
+        if (index === currentSection) {
+          step.classList.add('active');
+        } else {
+          step.classList.remove('active');
+        }
+      });
+    
+      // Update the button text based on the current section
+      if (currentSection === 0) {
+        prevButton.disabled = true;
+      } else {
+        prevButton.disabled = false;
+      }
+    
+      if (currentSection === steps.length - 1) {
+        nextButton.disabled = true;
+      } else {
+        nextButton.disabled = false;
+      }
+    }
+    
+    // Go to the next section
+    function nextSection() {
+      currentSection++;
+      updateSection();
+    }
+    
+    // Go to the previous section
+    function prevSection() {
+      currentSection--;
+      updateSection();
+    }
+    
+    // Update the visible section
+    function updateSection() {
+      if (currentSection === 0) {
+        personalInfo.style.display = 'block';
+        accountInfo.style.display = 'none';
+      } else if (currentSection === 1) {
+        personalInfo.style.display = 'none';
+        accountInfo.style.display = 'block';
+      }
+    
+      updateProgress();
+    }
+    
+
+    // get the progress bar element
+    const progressBar = document.querySelector('.progress-bar');
+    
+    // get the two sections of the form
+    const section1 = document.querySelector('#personal-info');
+    const section2 = document.querySelector('#account-info');
+    
+    // add event listeners to the input fields in each section
+    const section1Inputs = section1.querySelectorAll('input');
+    const section2Inputs = section2.querySelectorAll('input');
+    
+    section1Inputs.forEach(input => {
+      input.addEventListener('input', updateProgressBar);
+    });
+    
+    section2Inputs.forEach(input => {
+      input.addEventListener('input', updateProgressBar);
+    });
+    
+    // function to update the progress bar based on the user's input
+    function updateProgressBar() {
+      const totalInputs = section1Inputs.length + section2Inputs.length;
+      let completedInputs = 0;
+    
+      section1Inputs.forEach(input => {
+        if (input.value !== '') {
+          completedInputs++;
+        }
+      });
+    
+      section2Inputs.forEach(input => {
+        if (input.value !== '') {
+          completedInputs++;
+        }
+      });
+    
+      const percentComplete = (completedInputs / totalInputs) * 100;
+    
+      if (percentComplete < 50) {
+        progressBar.style.backgroundColor = 'grey';
+      } else {
+        progressBar.style.backgroundColor = 'var(--brand-color)';
+      }
+    }
+    
+    // Set up the form submit event
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      // Submit the form data to the API
+      const datax = new FormData(form);
+    
+      let data = {
+        'first_name': datax.get('first_name'),
+        'last_name': datax.get('last_name'),
+        'email': datax.get('email'),
+        'password': datax.get('password'),
+        'password1': datax.get('password'),
+        'password2': datax.get('password_confirm')
+      };
+    
+      // Check if the passwords match
+      if (data.password1 === data.password2) {
+        data.password = data.password1;
+      } else {
+        alert('Passwords do not match');
+        return;
+      }
+    
+      fetch('/api/users/', {
+        method: 'POST',
+        headers: {
+          "Authorization": "{{access_token}}",
+          //'X-CSRFToken': document.getElementsByName('csrfmiddlewaretoken')[0].value,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data),
+      }).then((response) => {
+        if (response.ok) {
+          showAlert("success","Account Creation successful. Kindly check your mail for activation link",duration=5000);
+          window.location.href = '/login';
+          form.reset();
+          currentSection = 0;
+          updateSection();
+        } else {
+          alert('Registration failed. Try a different email/username.');
+        }
+      });
+    });
+    
+
+
+updateSection();
+
+
+{% endblock %}

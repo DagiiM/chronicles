@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<style>
+  .about-us-card{
+    width:80%;
+  }
+  .about-us-card__body p{
+    text-align:left;
+    font-size:16px;
+    margin:5px auto;
+  }
+  .about-us-card__body h4{
+    font-size:18px;
+    text-align:left;
+  }
+</style>
+<div class="about-us-card">
+    <header class="about-us-card__header">
+      <h1 class="about-us-card__title">Our Terms & Conditions</h1>
+    </header>
+    <article class="about-us-card__body">
+      <p>
+        Welcome to {{ company_name }} ("we," "us," "our," or "{{ company_name }}"), an information technology startup company. These terms and conditions ("Terms") govern your access to and use of our website, products, and services. By accessing or using our website, products, or services, you agree to be bound by these Terms and our Privacy Policy. If you do not agree to these Terms, you are not authorized to access or use our website, products, or services.
+    </p>
+        <h4>1. Scope of Services</h4>
+       <p> {{ company_name }} offers a range of information technology products and services, including but not limited to website development, software development, and consulting services. The specific terms and conditions of these products and services will be provided to you at the time of purchase or engagement.</p>
+
+       <h4>2. Intellectual Property</h4>
+       <p>
+        All content and materials on our website and in our products, including but not limited to text, graphics, logos, images, and software, are the property of {{ company_name }} or our licensors and are protected by copyright and trademark laws. You may not use any of this content or materials for any commercial purpose without the express written consent of {{ company_name }}.
+        </p>
+
+       <h4>3. Disclaimer of Warranties </h4>
+       <p>
+        {{ company_name }} provides our website, products, and services "as is" and makes no representations or warranties of any kind, express or implied, as to the operation of our website, the accuracy or completeness of the information on our website, or the suitability or reliability of our products or services for any particular purpose. We do not warrant that our website, products, or services will be uninterrupted or error-free, and we will not be liable for any interruptions or errors.</p>
+
+        <h4>4. Limitation of Liability</h4>
+        <p>{{ company_name }} will not be liable for any damages of any kind arising from the use of our website, products, or services, including but not limited to direct, indirect, incidental, punitive, and consequential damages.</p>
+
+        <h4>5. Indemnification</h4>
+       <p> You agree to indemnify and hold {{ company_name }} and our affiliates, officers, agents, and employees harmless from any claim or demand, including reasonable attorneys' fees, made by any third party due to or arising out of your use of our website, products, or services, your violation of these Terms, or your violation of any rights of another.</p>
+
+       <h4>6. Governing Law and Jurisdiction</h4>
+        <p> These Terms and your use of our website, products, and services will be governed by and construed in accordance with the laws of Kenya, without giving effect to any principles of conflicts of law. You agree that any legal action or proceeding arising out of or related to these Terms or your use of our website, products, or services will be brought exclusively in the federal or state courts in Kenya  and you hereby irrevocably consent to the jurisdiction of such courts.</p>
+
+        <h4>7. Severability</h4>
+        <p> If any provision of these Terms is found to be invalid or unenforceable, that provision will be enforced to the maximum extent possible, and the remaining provisions will remain in full force and effect.
+
+          <h4>8. Waiver</h4>
+        <p> The failure of {{ company_name }} to exercise or enforce any right or provision of these Terms will not constitute a waiver of such right or provision.</p>
+
+        <h4>9. Entire Agreement</h4>
+        <p> These Terms constitute the entire agreement between you and {{ company_name }} and govern your use of our website, products, and services, superseding any prior agreements between you and {{ company_name }}.</p>
+
+        <h4>10. Changes to These Terms</h4>
+        <p> {{ company_name }} reserves the right to modify these Terms at any time without notice. Any changes to these Terms will be effective immediately upon posting on our website. Your continued use of our website, products, or services after such changes are posted will constitute your acceptance of the revised Terms. We encourage you to review these Terms periodically for any updates or changes.</p>
+
+        <h4>Contact Us</h4>
+        <p> If you have any questions about these Terms or our website, products, or services, please contact us at {{ support_email }}.</p>
+
+              
+    </article>
+  </div>
+  
+
+{% endblock %}

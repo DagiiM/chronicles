@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<style>
+  .about-us-card{
+    width:80%;
+  }
+  .about-us-card__body p{
+    text-align:left;
+    font-size:16px;
+    margin:5px auto;
+  }
+  .about-us-card__body h4{
+    font-size:18px;
+    text-align:left;
+  }
+</style>
+<div class="about-us-card">
+    <header class="about-us-card__header">
+      <h1 class="about-us-card__title">Our Privacy Policy</h1>
+    </header>
+    <article class="about-us-card__body">
+      <p>
+      At our startup, we are committed to protecting the privacy of our users. We recognize that our users trust us with their personal information, and we take that trust seriously. This privacy policy outlines the types of personal information we collect, how we use it, and the steps we take to keep it safe.
+    </p>
+     <h4>1. Collection of Personal Information</h4>
+     <p>
+      We collect personal information from our users in a variety of ways, including:
+      Information provided by users when they sign up for our services or create an account. This may include name, email address, and other contact information.
+      Information provided by users when they interact with our services, such as feedback, comments, or other forms of user-generated content.
+      Information collected through cookies and other tracking technologies, such as IP addresses, device information, and browsing history.
+    </p>
+
+      <h4>2. Use of Personal Information</h4>
+      <p>
+      We use personal information for a variety of purposes, including:
+      To provide and improve our services. We may use personal information to tailor our services to individual users, to diagnose and fix technical issues, or to develop new features and functionality.
+      To communicate with users. We may use personal information to send updates, newsletters, or other communications about our services or upcoming events.
+      To enforce our terms of service and other policies. We may use personal information to investigate violations of our policies or to protect the rights, property, or safety of our users or others.
+    </p>
+
+      <h4>3. Sharing of Personal Information</h4>
+      <p>
+      We do not share personal information with third parties, except in the following circumstances:
+      With the user's consent. We may share personal information with third parties if the user has explicitly given their permission to do so.
+      For legal reasons. We may share personal information if we believe it is necessary to comply with a legal obligation or to protect the rights, property, or safety of our users or others.
+      In the context of a merger or acquisition. If we are acquired by another company, or if we merge with another company, we may share personal information with the new owners of the company.
+      </p>
+      <h4>4. Security of Personal Information</h4>
+      <p>
+      We take the security of personal information seriously, and we use a variety of measures to protect it from unauthorized access, disclosure, or misuse. These measures include:
+      Encrypting personal information using industry-standard technologies.
+      Storing personal information on secure servers in controlled environments.
+      Implementing access controls and other security measures to prevent unauthorized access to personal information.
+    </p>
+      <h4>5. Changes to this Privacy Policy</h4>
+      <p>
+      We may update this privacy policy from time to time to reflect changes in our practices or legal requirements. If we make any significant changes, we will notify our users through our services or by other means.
+    </p>
+      <h4>Contact Us</h4>
+        <p>
+      If you have any questions or concerns about our privacy practices, please contact us at <strong>{{  support_email }}</strong>. We will do our best to address your concerns and resolve any issues.
+    </p>
+
+
+
+    </article>
+  </div>
+  
+
+{% endblock %}

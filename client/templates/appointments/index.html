@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block css %}
+
+  <script type="module" src="{% static 'js/appointment.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+
+  <h1 style="text-align:center;padding-bottom:5px;">Appointments</h1>
+  <section>
+    {% include 'components/tab_interface.html' with tabs=tabs %}
+    </section>
+    
+
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block css %}
+<script type="module" src="{% static 'js/notification.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<section class="card__container">
+  <h1 style="text-align:center;padding-bottom:5px;">Notifications</h1>
+  <section>
+    {% include 'components/tab_interface.html' with tabs=tabs %}
+  </section>
+  
+</section>
+
+{% endblock %}

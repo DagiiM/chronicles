@@ -1,0 +1,52 @@
+classDiagram
+    class User{
+        + id: int
+        + username: string
+        + email: string
+        + password: string
+        + first_name: string
+        + last_name: string
+        + is_active: bool
+        + is_staff: bool
+        + date_joined: datetime
+    }
+
+    class Staff{
+        + id: int
+        + user: User
+        + clinic: Clinic
+    }
+
+    class Clinic{
+        + id: int
+        + name: string
+    }
+
+    class AppointmentType{
+        + id: int
+        + name: string
+    }
+
+    class Consultation{
+        + id: int
+        + sender: User
+        + staff: Staff
+        + content: string
+        + created_at: datetime
+        + is_read: bool
+        + status: string
+        --
+        + mark_as_read(): void
+    }
+
+    class ConsultationManager{
+        --
+        + create_consultation(sender: User, staff: Staff, content: string, clinic: string, appointment_type: string): Consultation
+    }
+
+    User "1" -- "N" Staff
+    Staff "1" -- "1" Clinic
+    Consultation "1" -- "1" User: sender
+    Consultation "1" -- "1" Staff
+    Clinic "1" -- "N" AppointmentType
+    Consultation <|-- ConsultationManager

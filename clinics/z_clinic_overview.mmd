@@ -1,0 +1,115 @@
+
+classDiagram
+    class Clinic{
+        + id: Integer
+        + name: String
+        + country: String
+        + is_active: Boolean
+        + created_at: DateTime
+        + updated_at: DateTime
+        + created_by: User
+        + approved_by: User
+        + fields_to_return: List[String]
+        + clinic_availability: List[ClinicAvailability]
+        + specialties: List[Specialty]
+        + appointments: List[AppointmentType]
+        + agreements: List[Agreement]
+        + contracts: List[Contract]
+    }
+
+    class BasicInfo{
+        + clinic: Clinic
+        + name: String
+        + address: String
+        + city: String
+        + state: String
+        + zip_code: String
+        + phone_number: String
+        + email: String
+        + website: String
+        + __str__() : String
+    }
+
+    class Location{
+        + clinic: Clinic
+        + address: String
+        + geolocation: GeoLocationField
+        + __str__() : String
+    }
+
+    class Management{
+        + clinic: Clinic
+        + medical_director: String
+        + clinic_manager: String
+        + hours_of_operation: String
+        + __str__() : String
+    }
+
+    class Holiday{
+        + clinic: Clinic
+        + date: Date
+        + country: Country
+        + __str__() : String
+    }
+
+    class ClinicAvailability{
+        + clinic: Clinic
+        + appointment_type: AppointmentType
+        + date: Date
+        + available_slots: Integer
+        + max_slots: Integer
+        + __str__() : String
+    }
+
+    class Agreement{
+        + name: String
+        + description: Text
+        + salaries: List[Salary]
+        + contracts: List[Contract]
+        + __str__() : String
+    }
+
+    class AppointmentType{
+        + name: String
+        + description: Text
+        + max_slots: Integer
+        + appointment_specialty: List[Specialty]
+    }
+
+    class Specialty{
+        + name: String
+        + description: Text
+        + appointment_type: AppointmentType
+        + contracts: List[Contract]
+        + __str__() : String
+    }
+
+    class Salary{
+        + amount: Decimal
+        + description: Text
+        + frequency: String
+        + agreement: Agreement
+        + contracts: List[Contract]
+        + __str__() : String
+    }
+
+    class Contract{
+        + start_date: DateTime
+        + end_date: DateTime
+        + agreement: Agreement
+        + specialty: Specialty
+        + salary: Salary
+        + status: String
+    }
+
+    Clinic "1" --o "1" BasicInfo
+    Clinic "1" --o "1" Location
+    Clinic "1" --o "1" Management
+    Clinic "1" --o "n" Holiday
+    Clinic "1" --o "n" ClinicAvailability
+    Clinic "1" --o "n" Agreement
+    Clinic "1" --o "n" AppointmentType
+    Clinic "1" --o "n" Contract
+    AppointmentType "1" --o "n" Specialty
+    Agreement "1" --o "n" Salary
+    Specialty "1" --o "n" Contract

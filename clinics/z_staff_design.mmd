@@ -1,0 +1,120 @@
+
+classDiagram
+    class Leave{
+        <<Model>>
+        -type: CharField
+        -start_date: DateField
+        -end_date: DateField
+        -total_days: PositiveIntegerField
+        -remaining_days: PositiveIntegerField
+        -status: CharField
+        -is_approved: BooleanField
+        -approved_by: Leave
+        --
+        +staff: Staff
+        +clean()
+        +__str__()
+        +save()
+    }
+    class Staff{
+        <<Model>>
+        -user: User
+        -status: CharField
+        -is_approved: BooleanField
+        -created_by: User
+        -approved_by: User
+        --
+        +clinic: Clinic
+        +__str__()
+        +is_on_leave()
+    }
+    class ClinicStaff{
+        <<Model>>
+        -contract: Contract
+        --
+        +staff: Staff
+        +clinic: Clinic
+    }
+    class Clinic{
+        <<Model>>
+        -name: CharField
+        -address: CharField
+        --
+        +__str__()
+    }
+    class AppointmentType{
+        <<Model>>
+        -name: CharField
+        --
+        +__str__()
+    }
+    class Contract{
+        <<Model>>
+        -specialty: Specialty
+        -start_date: DateField
+        -end_date: DateField
+        -is_active: BooleanField
+        --
+        +staff: Staff
+        +appointment_type: AppointmentType
+    }
+    class Specialty{
+        <<Model>>
+        -name: CharField
+        --
+        +__str__()
+    }
+    class User{
+        <<Model>>
+        -first_name: CharField
+        -last_name: CharField
+        --
+        +__str__()
+    }
+    class Status{
+        <<Enum>>
+        REQUESTED
+        APPROVED
+        CANCELLED
+        REJECTED
+    }
+    class LeaveType{
+        <<Enum>>
+        PERSONAL_LEAVE
+        SICK_LEAVE
+        PARENTAL_LEAVE
+        ANNUAL_LEAVE
+    }
+    class ContractStatus{
+        <<Enum>>
+        PENDING
+        APPROVED
+        REJECTED
+    }
+    class Appointment{
+        <<Model>>
+        -date: DateField
+        --
+        +staff: Staff
+        +appointment_type: AppointmentType
+    }
+    class QuerySet{
+        <<Model>>
+        +select_staff()
+        +get_available_staff()
+        +get_staff_on_leave_filter()
+    }
+    
+    Leave --|> Staff
+    Staff --* ClinicStaff
+    Clinic --* ClinicStaff
+    ClinicStaff --|> Contract
+    ClinicStaff --|> Specialty
+    Staff --* Appointment
+    Contract --|> Specialty
+    User --|> Staff
+    Leave --|> Status
+    Leave --|> LeaveType
+    Staff --|> ContractStatus
+    QuerySet --|> Staff
+
