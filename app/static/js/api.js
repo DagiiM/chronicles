@@ -1,31 +1,29 @@
 export class APIClient {
   static __instance = null;
 
-  static getInstance() {
+  static getInstance(base_url = 'https://172.105.84.246') {
     if (APIClient.__instance === null) {
-      APIClient.__instance = new APIClient();
+      APIClient.__instance = new APIClient(base_url);
     }
     return APIClient.__instance;
   }
 
-  constructor(base_url = 'http://127.0.0.1:8000', credentials, tokenPrefix = 'Token') {
+  constructor(base_url, tokenPrefix = 'Token') {
     if (APIClient.__instance !== null) {
       throw new Error('Cannot instantiate more than one APIClient instance');
     }
     this.base_url = base_url;
-    this.credentials = credentials;
     this.token = null;
     this.authenticated = false;
     this.tokenPrefix = tokenPrefix;
     APIClient.__instance = this;
   }
-
-  async authenticate() {
+  async authenticate(username, password) {
     try {
       const response = await fetch(`${this.base_url}/auth/`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(this.credentials)
+        body: JSON.stringify({ 'username': username, 'password': password })
       });
       if (!response.ok) {
         if (response.status === 404) {
@@ -41,11 +39,11 @@ export class APIClient {
         'Content-Type': 'application/json',
         'Authorization': `Token ${token}`
       };
-      fetch('/get-user-id/', { headers })
+      fetch(`${this.base_url}/get-user-id/`, { headers })
       .then(response => response.json())
       .then(data => {
         const userID = data['user_id'];
-        sessionStorage.setItem('userID', userID); // Save user data in session storage
+        sessionStorage.setItem('userID', JSON.stringify({ 'userId': userID })); // Save user data in session storage
       })
       .catch(error => {
         console.error('Error:', error);

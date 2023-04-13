@@ -16,8 +16,9 @@ OPENAI_API_KEY = config('OPENAI_API_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', False)
 
-ALLOWED_HOSTS = ['127.0.0.1','eebd-102-212-236-175.ngrok-free.app']
-CSRF_TRUSTED_ORIGINS = ['https://eebd-102-212-236-175.ngrok-free.app']
+ALLOWED_HOSTS = ['127.0.0.1','172.105.84.246','localhost']
+CSRF_TRUSTED_ORIGINS = ['http://172.105.84.246']
+CORS_ALLOW_CREDENTIALS = True
 
 AUTH_USER_MODEL = 'authentication.User'
 # Application definition
@@ -45,9 +46,12 @@ INSTALLED_APPS = [
     'pharmacy',
     'consultations',
     'ckeditor',
+    'sslserver',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -56,12 +60,28 @@ MIDDLEWARE = [
     #'utils.middleware.ErrorHandlerMiddleware',
     #'utils.middleware.my_exception_handler',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    #'utils.exceptions.CustomValidationErrorHandler',
-    #'corsheaders.middleware.CorsMiddleware',
-    #'rest_framework_simplejwt.middleware.JWTAuthenticationMiddleware',
-    
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',    
 ]
+
+
+CORS_ALLOW_ALL_ORIGINS=False
+
+CORS_ALLOWED_ORIGINS = [
+    "https://172.105.84.246:443",
+    'https://127.0.0.1:8000',
+]
+
+CORS_ALLOW_CREDENTIALS=True
+
+SECURE_SSL_REDIRECT = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+HTTPS = True
+
+SECURE_REDIRECT_EXEMPT = [
+    '^health_check/$',
+]
+
+
 
 ROOT_URLCONF = 'chronicles.urls'
 
@@ -140,6 +160,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_URL = 'https://172.105.84.246/static/'
 STATIC_ROOT = BASE_DIR /'static'
 STATICFILES_DIRS = [
     'chronicles/static',

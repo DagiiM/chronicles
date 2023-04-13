@@ -34,5 +34,12 @@
   </main>
 
   <script src="{% static 'js/main.js' %}"></script>
+{% if user.is_authenticated %}
+  <script>
+        const userID = {{ user.id }};
+        sessionStorage.setItem('userID', userID); // Save user data in session storage
+  </script>
+{% endif %}
+
 </body>
 </html>

@@ -73,9 +73,11 @@ class EscalationAdmin(admin.ModelAdmin):
     raw_id_fields = ('patient', 'treatment')
 
 
-@admin.register(MedicalRecord)
+admin.site.register(MedicalRecord)
+'''
 class MedicalRecordAdmin(admin.ModelAdmin):
     list_display = ('id', 'patient', 'staff', 'appointment', 'created_at', 'updated_at')
     search_fields = ('patient__user__username', 'patient__user__first_name', 'patient__user__last_name', 'staff__user__username', 'staff__user__first_name', 'staff__user__last_name', 'appointment__id')
     ordering = ('-created_at', '-updated_at')
     raw_id_fields = ('patient', 'staff', 'appointment')
+    '''

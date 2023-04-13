@@ -1,5 +1,6 @@
 import { APIClient, AuthenticationError } from './api.js';
 
+// Get the login form element
 const form = document.querySelector("#login-form");
 
 // Get the submit button element
@@ -26,26 +27,30 @@ requiredFields.forEach((field) => {
   });
 });
 
+// Add submit event listener to the login form
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
 
+  // Get the username and password from the form
   const username = form.username.value;
   const password = form.password.value;
 
-  const client = new APIClient('', { username, password });
+  // Create an instance of the APIClient with the given credentials
+  const client = APIClient.getInstance();
 
   try {
-    await client.authenticate();
-    showAlert('Authentication successful',5000);
-    window.location.href = '/dashboard';
+    // Authenticate the client with the given credentials
+    await client.authenticate(username, password);
+
+    // Redirect to the home page on successful authentication
+    window.location.href = '/';
   } catch (e) {
     if (e instanceof AuthenticationError) {
+      // Redirect to the login page if there was an authentication error
       window.location.href = '/login';
-      showAlert("failed",`${e}`);
+      console.error(`${e}`);
     } else {
-      showAlert("failed",`${e}`);
       console.error(`${e}`);
     }
   }
-
 });

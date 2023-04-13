@@ -19,5 +19,9 @@ pip install openai
 pip install tenacity
 #sudo apt-get install gdal-bin libgdal-dev #-> Ubuntu,#locate libgdal
 pip install django-ckeditor
+pip install mysqlclient
+pip install django-cors-headers
+pip install django-extensions
+
 
 pip freeze > requirements.txt

@@ -1,0 +1,61 @@
+
+# Server ssl set up
+
+pip install django-sslserver
+
+openssl genrsa -out server.key 2048
+openssl req -new -x509 -key server.key -out server.crt -days 365
+
+#settings.py
+SECURE_SSL_REDIRECT = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+HTTPS = True
+
+python manage.py runsslserver --certificate server.crt --key server.key
+
+# Set up Apache to use ssl
+
+sudo cp server.key /etc/ssl/private/
+sudo cp server.crt /etc/ssl/certs/
+
+
+sudo nano /etc/apache2/sites-available/django.conf
+
+<VirtualHost *:80 *:443>
+    ServerAdmin douglasmutethia2017@gmail.com
+    ServerName 172.105.84.246
+    ServerAlias www.172.105.84.246
+
+    DocumentRoot /var/www/chronicles/
+
+    ErrorLog ${APACHE_LOG_DIR}/chronicles.error.log
+    CustomLog ${APACHE_LOG_DIR}/chronicles_access.log combined
+
+    Alias /static /var/www/chronicles/static
+    <Directory /var/www/chronicles/static>
+        Require all granted
+    </Directory>
+
+    Alias /media /var/www/chronicles/media
+    <Directory /var/www/chronicles/media>
+        Require all granted
+    </Directory>
+
+    <Directory /var/www/chronicles>
+        <Files wsgi.py>
+            Require all granted
+        </Files>
+    </Directory>
+
+    WSGIDaemonProcess chronicles python-path=/var/www/chronicles python-home=/var/www/venv
+    WSGIProcessGroup chronicles
+    WSGIScriptAlias / /var/www/chronicles/chronicles/wsgi.py
+
+    # SSL settings
+    SSLEngine on
+    SSLCertificateFile /etc/ssl/certs/server.crt
+    SSLCertificateKeyFile /etc/ssl/private/server.key
+</VirtualHost>
+
+sudo a2enmod ssl
+sudo systemctl restart apache2

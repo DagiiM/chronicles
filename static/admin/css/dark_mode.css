@@ -1,0 +1,47 @@
+
+    :root {
+      --text-color:#222;
+      --primary: hsl(0, 60%, 40%);
+      --secondary:hsl(0, 60%, 55%);
+      --primary-fg: #f7f7f7;
+  
+      --body-fg: #333;
+      --body-bg: #fff;
+      --body-quiet-color: #666;
+      --body-loud-color: #000;
+  
+      --breadcrumbs-link-fg: #e0e0e0;
+      --breadcrumbs-bg: var(--primary);
+  
+      --link-fg: var(--text-color);
+      --link-hover-color: hsl(0, 60%, 35%);
+      --link-selected-fg: #6f94c6;
+  
+      --hairline-color: #e8e8e8;
+      --border-color: #ccc;
+  
+      --error-fg: #ba2121;
+
+      --message-success-bg: #dfd;
+      --message-warning-bg: #ffc;
+      --message-error-bg: #ffefef;
+    
+      --darkened-bg: #f8f8f8; /* A bit darker than --body-bg */
+      --selected-bg: #e4e4e4; /* E.g. selected table cells */
+      --selected-row: #ffc;
+    
+      --button-fg: #fff;
+      --button-bg: var(--primary);
+      --button-hover-bg: #609ab6;
+      --default-button-bg: var(--secondary);
+      --default-button-hover-bg: #205067;
+  
+      --close-button-bg: var(--primary);
+      --close-button-hover-bg: var(--secondary);;
+    }
+    #nav-filter{
+        outline: 0;
+        width:98% !important;
+        margin-inline: 1% !important;
+    }
+  

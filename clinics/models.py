@@ -682,7 +682,7 @@ class Appointment(Searchable):
                                                  default=AppointmentStatus.CONFIRMED.value
                                                  )
     appointment_type:AppointmentType = models.ForeignKey(AppointmentType,related_name='patient_appointment_type', on_delete=models.CASCADE)
-    appointment_reason = models.TextField(blank=True, null=True)
+    #appointment_reason = models.TextField(blank=True, null=True)
     about = GenericRelation(AboutRelationship, related_query_name='appointment')
 
     def latest_verified_about(self):
@@ -763,13 +763,6 @@ class Appointment(Searchable):
         self.refresh_from_db()
 
 
-    def get_absolute_url(self) -> str:
-        """
-        Retrieve url
-        """
-        return reverse('appointment_detail', args=[str(self.id)])
-
-    
     def get_staff_name(self) -> str:
         """
         Retrieve Staff name
