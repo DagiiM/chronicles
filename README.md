@@ -12,3 +12,11 @@ Collection for Website API calls is available under `api_collection.json`
 
 The project works as is with a few remaining fixes.
 
+## Modules
+- Clinic module
+- Pharmacy Module
+- NotificationsModule
+- About module
+- Consultations Module
+
+Of all Modules, clinic is like the infrastructure composed of humanware to manage and optimization of the resources.
