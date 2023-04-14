@@ -1,0 +1,673 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "Equity Afia",
+    "dateExported": "2023-04-14T19:38:44.003Z",
+    "version": "1.1",
+    "folders": [
+        {
+            "_id": "2c39f896-8196-422f-bbdf-26146749603d",
+            "name": "User Management",
+            "containerId": "",
+            "created": "2023-03-23T14:59:21.259Z",
+            "sortNum": 10000
+        },
+        {
+            "_id": "aacffd51-1a78-4ad1-82a6-e32325aceed4",
+            "name": "Appointment Management",
+            "containerId": "",
+            "created": "2023-03-23T15:02:27.122Z",
+            "sortNum": 20000
+        },
+        {
+            "_id": "3e197a1a-e8d2-4d64-a202-290824105d2e",
+            "name": "Notifications",
+            "containerId": "2c39f896-8196-422f-bbdf-26146749603d",
+            "created": "2023-03-30T17:33:32.675Z",
+            "sortNum": 30000
+        },
+        {
+            "_id": "5978cf2e-4656-4c8f-bbdd-364e3cda8b7f",
+            "name": "Clinic Module",
+            "containerId": "",
+            "created": "2023-04-01T15:16:21.559Z",
+            "sortNum": 40000
+        },
+        {
+            "_id": "b3f16b62-a76d-4db7-b105-b446efb8f9d0",
+            "name": "Pharmacy Module",
+            "containerId": "",
+            "created": "2023-04-08T20:43:01.637Z",
+            "sortNum": 50000
+        },
+        {
+            "_id": "d2f2bb05-3a88-4203-9366-eae787be4f3f",
+            "name": "Consultations Module",
+            "containerId": "",
+            "created": "2023-04-08T23:28:04.620Z",
+            "sortNum": 60000
+        }
+    ],
+    "requests": [
+        {
+            "_id": "64cb9afa-ce40-43dc-a613-ecf8d48f473c",
+            "colId": "60736fc9-7dc4-4bb1-8772-dbb1eaf2261a",
+            "containerId": "2c39f896-8196-422f-bbdf-26146749603d",
+            "name": "User Profile Deletion",
+            "url": "127.0.0.1:8000/api/users/9/",
+            "method": "DELETE",
+            "sortNum": 20000,
+            "created": "2023-03-23T14:59:55.039Z",
+            "modified": "2023-03-23T20:41:58.224Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\":\"kobiadouglas10@gmail.com\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "",
+                "bearerPrefix": "Token"
+            },
+            "tests": []
+        },
+        {
+            "_id": "a2752a08-0f14-4636-a547-61466d492462",
+            "colId": "60736fc9-7dc4-4bb1-8772-dbb1eaf2261a",
+            "containerId": "2c39f896-8196-422f-bbdf-26146749603d",
+            "name": "User Profile Update",
+            "url": "127.0.0.1:8000/api/users/1/",
+            "method": "PUT",
+            "sortNum": 30000,
+            "created": "2023-03-23T15:00:06.158Z",
+            "modified": "2023-03-23T15:05:02.207Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"first_name\":\"Douglas\",\n  \"last_name\":\"Kobia\",\n  \"email\":\"douglasmutethia2017@gmail.com\",\n  \"password\":\"dagii\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "",
+                "bearerPrefix": "Token"
+            },
+            "tests": []
+        },
+        {
+            "_id": "e412ea20-e53e-428d-a84e-9e03c7a0c378",
+            "colId": "60736fc9-7dc4-4bb1-8772-dbb1eaf2261a",
+            "containerId": "2c39f896-8196-422f-bbdf-26146749603d",
+            "name": "User Profile",
+            "url": "127.0.0.1:8000/api/users/6/",
+            "method": "GET",
+            "sortNum": 40000,
+            "created": "2023-03-23T15:00:15.031Z",
+            "modified": "2023-04-11T20:29:12.292Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "",
+                "bearerPrefix": "Token"
+            },
+            "tests": []
+        },
+        {
+            "_id": "c92d0d40-6f8d-4fd9-ae0c-b8fac99fec69",
+            "colId": "60736fc9-7dc4-4bb1-8772-dbb1eaf2261a",
+            "containerId": "2c39f896-8196-422f-bbdf-26146749603d",
+            "name": "User - Clinics Near",
+            "url": "127.0.0.1:8000/api/users/11/clinics_near_me/",
+            "method": "POST",
+            "sortNum": 45000,
+            "created": "2023-04-01T19:21:58.239Z",
+            "modified": "2023-04-01T19:25:19.863Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"user_location\":\"37.7749, -122.4194\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "",
+                "bearerPrefix": "Token"
+            },
+            "tests": []
+        },
+        {
+            "_id": "d01ff763-5f61-40f4-bfe1-2accd49d2dc8",
+            "colId": "60736fc9-7dc4-4bb1-8772-dbb1eaf2261a",
+            "containerId": "2c39f896-8196-422f-bbdf-26146749603d",
+            "name": "User Creation",
+            "url": "127.0.0.1:8000/api/users/",
+            "method": "POST",
+            "sortNum": 50000,
+            "created": "2023-03-23T15:00:25.180Z",
+            "modified": "2023-04-11T20:28:11.302Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"first_name\": \"Douglas\",\n  \"last_name\": \"Kobia\",\n  \"email\": \"kobiadouglas1@gmail.com\",\n  \"password\":\"dagii000N\",\n  \"password1\": \"dagii000N\",\n  \"password2\": \"dagii000N\"\n}\n",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "",
+                "bearerPrefix": "Token"
+            },
+            "tests": []
+        },
+        {
+            "_id": "a13c95a5-b18a-4eef-af40-9e7849717bdc",
+            "colId": "60736fc9-7dc4-4bb1-8772-dbb1eaf2261a",
+            "containerId": "2c39f896-8196-422f-bbdf-26146749603d",
+            "name": "Change Password",
+            "url": "127.0.0.1:8000/api/users/change_password/",
+            "method": "POST",
+            "sortNum": 60000,
+            "created": "2023-03-23T15:00:35.663Z",
+            "modified": "2023-03-23T15:05:36.356Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"old_password\":\"douglasmutethia2017@gmail.com\",\n  \"new_password\":\"dagii\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "",
+                "bearerPrefix": "Token"
+            },
+            "tests": []
+        },
+        {
+            "_id": "5104ef2b-0bd4-4a25-b2cf-f61d83ad37b5",
+            "colId": "60736fc9-7dc4-4bb1-8772-dbb1eaf2261a",
+            "containerId": "2c39f896-8196-422f-bbdf-26146749603d",
+            "name": "Token Api Login",
+            "url": "http://127.0.0.1:8000/api-login/",
+            "method": "POST",
+            "sortNum": 70000,
+            "created": "2023-03-23T15:00:45.990Z",
+            "modified": "2023-04-04T11:47:13.486Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\":\"kobiadouglas10@gmail.com\",\n  \"password\":\"dagii000N\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "",
+                "bearerPrefix": "Token"
+            },
+            "tests": []
+        },
+        {
+            "_id": "9c11a89b-2c1c-4581-bef3-d786d1ebb02e",
+            "colId": "60736fc9-7dc4-4bb1-8772-dbb1eaf2261a",
+            "containerId": "2c39f896-8196-422f-bbdf-26146749603d",
+            "name": "List All Users",
+            "url": "127.0.0.1:8000/api/users/",
+            "method": "GET",
+            "sortNum": 80000,
+            "created": "2023-03-23T15:01:28.276Z",
+            "modified": "2023-03-26T13:00:13.427Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "",
+                "bearerPrefix": "Token"
+            },
+            "tests": []
+        },
+        {
+            "_id": "03aeeab3-11ae-4990-a310-79acf9fc65a8",
+            "colId": "60736fc9-7dc4-4bb1-8772-dbb1eaf2261a",
+            "containerId": "aacffd51-1a78-4ad1-82a6-e32325aceed4",
+            "name": "List Appointments",
+            "url": "http://127.0.0.1:8000/api/appointments/",
+            "method": "GET",
+            "sortNum": 90000,
+            "created": "2023-03-23T15:04:33.797Z",
+            "modified": "2023-04-05T13:44:10.447Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "",
+                "bearerPrefix": "Token"
+            },
+            "tests": []
+        },
+        {
+            "_id": "3dffb88a-14b0-4dd9-8b1c-d83df85c5cbc",
+            "colId": "60736fc9-7dc4-4bb1-8772-dbb1eaf2261a",
+            "containerId": "aacffd51-1a78-4ad1-82a6-e32325aceed4",
+            "name": "Recent Appointments",
+            "url": "http://127.0.0.1:8000/api/appointments/recent_appointments",
+            "method": "GET",
+            "sortNum": 92500,
+            "created": "2023-04-06T13:42:26.592Z",
+            "modified": "2023-04-06T13:42:41.436Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "",
+                "bearerPrefix": "Token"
+            },
+            "tests": []
+        },
+        {
+            "_id": "2fa5faaa-7485-4e8d-a194-493582521ce4",
+            "colId": "60736fc9-7dc4-4bb1-8772-dbb1eaf2261a",
+            "containerId": "aacffd51-1a78-4ad1-82a6-e32325aceed4",
+            "name": "Recent Appointments Copy",
+            "url": "http://127.0.0.1:8000/api/appointments/not_rated_appointments",
+            "method": "GET",
+            "sortNum": 93750,
+            "created": "2023-04-11T12:05:12.967Z",
+            "modified": "2023-04-11T12:05:18.672Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "",
+                "bearerPrefix": "Token"
+            },
+            "tests": []
+        },
+        {
+            "_id": "8bb616a9-4577-4f45-8202-09734b241a9b",
+            "colId": "60736fc9-7dc4-4bb1-8772-dbb1eaf2261a",
+            "containerId": "aacffd51-1a78-4ad1-82a6-e32325aceed4",
+            "name": "About Appointments",
+            "url": "http://127.0.0.1:8000/api/appointments/about_appointment/",
+            "method": "GET",
+            "sortNum": 95000,
+            "created": "2023-04-05T13:44:05.546Z",
+            "modified": "2023-04-05T13:44:05.546Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "",
+                "bearerPrefix": "Token"
+            },
+            "tests": []
+        },
+        {
+            "_id": "fdb5f54b-e570-4780-bc79-c17b16332307",
+            "colId": "60736fc9-7dc4-4bb1-8772-dbb1eaf2261a",
+            "containerId": "aacffd51-1a78-4ad1-82a6-e32325aceed4",
+            "name": "Appointments Feedback",
+            "url": "http://127.0.0.1:8000/api/appointments/244/appointment_feedback/",
+            "method": "GET",
+            "sortNum": 97500,
+            "created": "2023-04-11T09:09:19.044Z",
+            "modified": "2023-04-14T17:47:59.687Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"rating\":5\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "",
+                "bearerPrefix": "Token"
+            },
+            "tests": []
+        },
+        {
+            "_id": "910cd065-75e1-4f8e-a3cf-1415b55fc212",
+            "colId": "60736fc9-7dc4-4bb1-8772-dbb1eaf2261a",
+            "containerId": "aacffd51-1a78-4ad1-82a6-e32325aceed4",
+            "name": "Create Appointments",
+            "url": "http://127.0.0.1:8000/api/appointments/",
+            "method": "POST",
+            "sortNum": 100000,
+            "created": "2023-04-01T20:19:28.398Z",
+            "modified": "2023-04-07T14:22:49.900Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"clinic\":2,\n  \"patient\": 1,\n  \"start_time\": \"12:00\",\n  \"end_time\": \"13:00\",\n  \"appointment_date\": \"2023-04-25\",\n  \"appointment_type\": 2\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "",
+                "bearerPrefix": "Token"
+            },
+            "tests": []
+        },
+        {
+            "_id": "339e3de5-4db1-4c7f-88c2-215d80131c7e",
+            "colId": "60736fc9-7dc4-4bb1-8772-dbb1eaf2261a",
+            "containerId": "3e197a1a-e8d2-4d64-a202-290824105d2e",
+            "name": "List Notifications",
+            "url": "http://127.0.0.1:8000/api/notifications/",
+            "method": "GET",
+            "sortNum": 110000,
+            "created": "2023-03-30T17:34:11.285Z",
+            "modified": "2023-04-11T20:37:22.785Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "",
+                "bearerPrefix": "Token"
+            },
+            "tests": []
+        },
+        {
+            "_id": "9bee638b-2d9f-483d-904b-f72538acc4d1",
+            "colId": "60736fc9-7dc4-4bb1-8772-dbb1eaf2261a",
+            "containerId": "3e197a1a-e8d2-4d64-a202-290824105d2e",
+            "name": "Retrieve Notification",
+            "url": "http://127.0.0.1:8000/api/notifications/5",
+            "method": "GET",
+            "sortNum": 120000,
+            "created": "2023-03-30T17:34:51.354Z",
+            "modified": "2023-03-30T22:31:21.741Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "9fd954c4-cec5-447d-bf85-5615443ae0d2",
+            "colId": "60736fc9-7dc4-4bb1-8772-dbb1eaf2261a",
+            "containerId": "3e197a1a-e8d2-4d64-a202-290824105d2e",
+            "name": "Mark Notification as Read",
+            "url": "http://127.0.0.1:8000/api/notifications/5/mark_as_unread/",
+            "method": "POST",
+            "sortNum": 125000,
+            "created": "2023-03-30T17:38:48.994Z",
+            "modified": "2023-03-30T22:32:32.254Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "7dd641c1-402a-4aeb-9f5b-0944ffb54a9e",
+            "colId": "60736fc9-7dc4-4bb1-8772-dbb1eaf2261a",
+            "containerId": "3e197a1a-e8d2-4d64-a202-290824105d2e",
+            "name": "Mark Notification as Read Copy",
+            "url": "http://127.0.0.1:8000/api/notifications/mark_all_as_read/",
+            "method": "POST",
+            "sortNum": 127500,
+            "created": "2023-03-30T17:40:07.809Z",
+            "modified": "2023-03-30T17:40:41.052Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "5291ad43-3987-4788-99dc-5ff71da35e02",
+            "colId": "60736fc9-7dc4-4bb1-8772-dbb1eaf2261a",
+            "containerId": "3e197a1a-e8d2-4d64-a202-290824105d2e",
+            "name": "Send Test Notification",
+            "url": "http://127.0.0.1:8000/api/notifications/notify/",
+            "method": "POST",
+            "sortNum": 128750,
+            "created": "2023-03-30T17:53:30.223Z",
+            "modified": "2023-04-03T19:54:52.138Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n    \"notification_type\":\"info\",\n    \"body\":\"The subject Matter\",\n    \"subject\": \"Hello Love\",\n    \"recipients\":1\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": " ",
+                "bearerPrefix": "Token"
+            },
+            "tests": []
+        },
+        {
+            "_id": "9e256074-4fa9-44a5-91a0-7405299916c9",
+            "colId": "60736fc9-7dc4-4bb1-8772-dbb1eaf2261a",
+            "containerId": "3e197a1a-e8d2-4d64-a202-290824105d2e",
+            "name": "Delete Notification",
+            "url": "http://127.0.0.1:8000/api/notifications/20/",
+            "method": "DELETE",
+            "sortNum": 130000,
+            "created": "2023-03-30T17:36:23.252Z",
+            "modified": "2023-03-30T22:29:10.581Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "c9805102-b7c0-45e0-a975-b0f16e12128b",
+            "colId": "60736fc9-7dc4-4bb1-8772-dbb1eaf2261a",
+            "containerId": "5978cf2e-4656-4c8f-bbdd-364e3cda8b7f",
+            "name": "List Clinics",
+            "url": "http://127.0.0.1:8000/api/clinics/",
+            "method": "GET",
+            "sortNum": 140000,
+            "created": "2023-04-01T15:16:38.813Z",
+            "modified": "2023-04-05T10:04:19.706Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "6fbf78c0-36ac-4e62-8375-e5f475476b5f",
+            "colId": "60736fc9-7dc4-4bb1-8772-dbb1eaf2261a",
+            "containerId": "5978cf2e-4656-4c8f-bbdd-364e3cda8b7f",
+            "name": "Clinics Appointment types Availlable",
+            "url": "http://127.0.0.1:8000/api/clinics/3/appointment_types",
+            "method": "GET",
+            "sortNum": 145000,
+            "created": "2023-04-06T10:59:57.737Z",
+            "modified": "2023-04-07T18:23:24.499Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "8a63db54-d6f8-4220-9b13-10d488aef1a6",
+            "colId": "60736fc9-7dc4-4bb1-8772-dbb1eaf2261a",
+            "containerId": "3e197a1a-e8d2-4d64-a202-290824105d2e",
+            "name": "Read Notifications",
+            "url": "http://127.0.0.1:8000/api/notifications/read_notifications",
+            "method": "GET",
+            "sortNum": 150000,
+            "created": "2023-04-03T22:17:24.889Z",
+            "modified": "2023-04-05T08:22:04.893Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "dc6d300b-a04d-4b18-b6c3-1ba1f68c0e31",
+            "colId": "60736fc9-7dc4-4bb1-8772-dbb1eaf2261a",
+            "containerId": "5978cf2e-4656-4c8f-bbdd-364e3cda8b7f",
+            "name": "Clinics Near Me",
+            "url": "http://127.0.0.1:8000/api/clinics/clinics_near_me/",
+            "method": "GET",
+            "sortNum": 150000,
+            "created": "2023-04-05T10:01:20.328Z",
+            "modified": "2023-04-05T10:01:41.437Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "fe072e9c-9310-459f-bd5c-da457bd612b6",
+            "colId": "60736fc9-7dc4-4bb1-8772-dbb1eaf2261a",
+            "containerId": "2c39f896-8196-422f-bbdf-26146749603d",
+            "name": "Token",
+            "url": "http://127.0.0.1:8000/auth/",
+            "method": "POST",
+            "sortNum": 160000,
+            "created": "2023-04-04T16:50:27.116Z",
+            "modified": "2023-04-04T16:53:34.327Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"username\":\"kobiadouglas10@gmail.com\",\n  \"password\":\"dagii000N\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "a64e68c9-94c6-48e1-bc0c-2144188638d1",
+            "colId": "60736fc9-7dc4-4bb1-8772-dbb1eaf2261a",
+            "containerId": "5978cf2e-4656-4c8f-bbdd-364e3cda8b7f",
+            "name": "New Clinics",
+            "url": "http://127.0.0.1:8000/api/clinics/new_clinics/",
+            "method": "GET",
+            "sortNum": 160000,
+            "created": "2023-04-05T10:02:54.620Z",
+            "modified": "2023-04-05T10:03:01.542Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "86a4a61d-84f1-4232-b8ea-f514f0c15250",
+            "colId": "60736fc9-7dc4-4bb1-8772-dbb1eaf2261a",
+            "containerId": "2c39f896-8196-422f-bbdf-26146749603d",
+            "name": "Token Copy",
+            "url": "http://127.0.0.1:8000/api/users/reset_password/",
+            "method": "POST",
+            "sortNum": 170000,
+            "created": "2023-04-04T20:40:46.845Z",
+            "modified": "2023-04-04T20:41:10.241Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\":\"kobiadouglas10@gmail.com\",\n  \"password\":\"dagii000N\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "749a27b2-bfb3-4aa0-b6ee-e586db99eec5",
+            "colId": "60736fc9-7dc4-4bb1-8772-dbb1eaf2261a",
+            "containerId": "5978cf2e-4656-4c8f-bbdd-364e3cda8b7f",
+            "name": "Full Capacity Days",
+            "url": "http://127.0.0.1:8000/api/clinics/2/full_capacity_days/",
+            "method": "POST",
+            "sortNum": 170000,
+            "created": "2023-04-05T15:45:48.994Z",
+            "modified": "2023-04-07T21:05:00.952Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"appointment_type\":1\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": " "
+            },
+            "tests": []
+        },
+        {
+            "_id": "5356ee9c-a2a7-4536-ad1d-ba8cf483e7fb",
+            "colId": "60736fc9-7dc4-4bb1-8772-dbb1eaf2261a",
+            "containerId": "b3f16b62-a76d-4db7-b105-b446efb8f9d0",
+            "name": "list prescriptions",
+            "url": "http://127.0.0.1:8000/api/prescriptions/2",
+            "method": "GET",
+            "sortNum": 180000,
+            "created": "2023-04-08T20:43:40.218Z",
+            "modified": "2023-04-08T21:14:28.698Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "6254d4c8-4269-43a0-8f0c-e97f15f9df31",
+            "colId": "60736fc9-7dc4-4bb1-8772-dbb1eaf2261a",
+            "containerId": "b3f16b62-a76d-4db7-b105-b446efb8f9d0",
+            "name": "list medications",
+            "url": "http://127.0.0.1:8000/api/medications",
+            "method": "GET",
+            "sortNum": 190000,
+            "created": "2023-04-08T20:43:57.478Z",
+            "modified": "2023-04-08T20:44:43.121Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "ed38a44a-97fb-4538-aec7-ec2a8db28d6b",
+            "colId": "60736fc9-7dc4-4bb1-8772-dbb1eaf2261a",
+            "containerId": "d2f2bb05-3a88-4203-9366-eae787be4f3f",
+            "name": "list consultations",
+            "url": "http://127.0.0.1:8000/api/consultations",
+            "method": "GET",
+            "sortNum": 210000,
+            "created": "2023-04-08T23:28:18.545Z",
+            "modified": "2023-04-08T23:28:40.809Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "08a80a2b-2765-41ce-8790-b3f8b73cc46e",
+            "colId": "60736fc9-7dc4-4bb1-8772-dbb1eaf2261a",
+            "containerId": "d2f2bb05-3a88-4203-9366-eae787be4f3f",
+            "name": "retrieve consultation",
+            "url": "http://127.0.0.1:8000/api/consultations/2",
+            "method": "GET",
+            "sortNum": 215000,
+            "created": "2023-04-08T23:31:12.355Z",
+            "modified": "2023-04-08T23:31:39.542Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "0b56ce46-8cd1-488a-b57c-b57511fb12ad",
+            "colId": "60736fc9-7dc4-4bb1-8772-dbb1eaf2261a",
+            "containerId": "d2f2bb05-3a88-4203-9366-eae787be4f3f",
+            "name": "create consultation",
+            "url": "http://127.0.0.1:8000/api/consultations/",
+            "method": "POST",
+            "sortNum": 220000,
+            "created": "2023-04-08T23:29:04.814Z",
+            "modified": "2023-04-09T20:24:26.113Z",
+            "headers": [
+                {
+                    "name": "bot",
+                    "value": "true"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"sender\": 1,\n  \"content\": \"I want your advice on headache.\",\n  \"bot\":\"true\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "",
+                "bearerPrefix": "Token"
+            },
+            "tests": []
+        }
+    ]
+}
