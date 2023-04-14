@@ -25,3 +25,6 @@ Of all Modules, clinic is like the infrastructure composed of humanware to manag
 ## Installation
 - Use normal installation procedures
 - Create the virtual environment, be sure to use the `requirements.txt`
+- Be sure to rename `.env.example` to `.env` and update environment variables accordingly
+- After all the set up run `python manage.py collectstatic` - This step assumes you have already spinned up the environment and it's active if not
+- Go where virtual environment directory is and run `source venv/bin/activate` if on linux and environment is saved as `venv`
