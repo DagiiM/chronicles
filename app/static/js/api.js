@@ -1,7 +1,7 @@
 export class APIClient {
   static __instance = null;
 
-  static getInstance(base_url = 'https://172.105.84.246') {
+  static getInstance(base_url = 'https://eleso.ltd') {
     if (APIClient.__instance === null) {
       APIClient.__instance = new APIClient(base_url);
     }
