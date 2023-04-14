@@ -16,8 +16,8 @@ OPENAI_API_KEY = config('OPENAI_API_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', False)
 
-ALLOWED_HOSTS = ['127.0.0.1','172.105.84.246','localhost']
-CSRF_TRUSTED_ORIGINS = ['http://172.105.84.246']
+ALLOWED_HOSTS = ['127.0.0.1','172.105.84.246','localhost','https://eleso.ltd']
+CSRF_TRUSTED_ORIGINS = ['http://172.105.84.246','https://eleso.ltd']
 CORS_ALLOW_CREDENTIALS = True
 
 AUTH_USER_MODEL = 'authentication.User'
