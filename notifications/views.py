@@ -2,15 +2,16 @@ from django.utils import timezone
 from app.views import BaseViewSet
 from .serializers import NotificationSerializer 
 from .models import Notification
-from .enums import NotificationType,NotificationPreference
 from rest_framework.decorators import action
 from rest_framework.response import Response
-from authentication.models import User
 from rest_framework import status
+from rest_framework import permissions
 
 class NotificationViewSet(BaseViewSet):
     serializer_class = NotificationSerializer
     lookup_field = 'pk'
+    permission_classes = [permissions.IsAuthenticated]
+
 
     def get_queryset(self):
         queryset = super().get_queryset()

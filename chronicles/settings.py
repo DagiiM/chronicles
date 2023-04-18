@@ -2,6 +2,7 @@ from decouple import config
 
 from pathlib import Path
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -16,9 +17,12 @@ OPENAI_API_KEY = config('OPENAI_API_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', False)
 
-ALLOWED_HOSTS = ['127.0.0.1','172.105.84.246','localhost']
-CSRF_TRUSTED_ORIGINS = ['http://172.105.84.246']
-CORS_ALLOW_CREDENTIALS = True
+ALLOWED_HOSTS = ['127.0.0.1','172.105.84.246','localhost','eleso.ltd','www.eleso.ltd']
+CSRF_TRUSTED_ORIGINS = ['https://172.105.84.246']
+
+#CORS_REPLACE_HTTPS_REFERER = True
+
+#CORS_ALLOW_CREDENTIALS = True
 
 AUTH_USER_MODEL = 'authentication.User'
 # Application definition
@@ -52,6 +56,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
+    "corsheaders.middleware.CorsPostCsrfMiddleware",
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -61,6 +66,8 @@ MIDDLEWARE = [
     #'utils.middleware.my_exception_handler',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',    
+    'app.middleware.TokenAuthMiddleware',
+    
 ]
 
 
@@ -68,19 +75,36 @@ CORS_ALLOW_ALL_ORIGINS=False
 
 CORS_ALLOWED_ORIGINS = [
     "https://172.105.84.246:443",
+    "https://eleso.ltd:443",
     'https://127.0.0.1:8000',
+    'https://127.0.0.1:8005',
 ]
 
-CORS_ALLOW_CREDENTIALS=True
+CORS_ALLOW_HEADERS = [
+    "accept",
+    "accept-encoding",
+    "authorization",
+    "content-type",
+    "dnt",
+    "origin",
+    "user-agent",
+    "x-csrftoken",
+    "x-requested-with",
+]
+
+#CORS_ALLOW_CREDENTIALS=True
+
+#SECURE_SSL_REDIRECT = True
+#SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+#HTTPS = True
+
+SECURE_SSL_CERTIFICATE = '/certs/server.crt'
+SECURE_SSL_KEY = '/certs/server.key'
 
 SECURE_SSL_REDIRECT = True
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-HTTPS = True
-
-SECURE_REDIRECT_EXEMPT = [
-    '^health_check/$',
-]
-
+#SESSION_COOKIE_SECURE = True
+#CSRF_COOKIE_SECURE = True
 
 
 ROOT_URLCONF = 'chronicles.urls'
@@ -201,6 +225,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',
+        #'rest_framework.authentication.BasicAuthentication',
+        #'rest_framework.authentication.SessionAuthentication',
     ],
     #'EXCEPTION_HANDLER': 'app.exceptions.my_exception_handler'
 }

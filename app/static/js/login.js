@@ -43,7 +43,7 @@ form.addEventListener("submit", async (event) => {
     await client.authenticate(username, password);
 
     // Redirect to the home page on successful authentication
-    window.location.href = '/';
+    //window.location.href = '/';
   } catch (e) {
     if (e instanceof AuthenticationError) {
       // Redirect to the login page if there was an authentication error

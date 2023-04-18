@@ -1,6 +1,35 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h1>Dashboard</h1>
+   <h1 style="text-align:center;padding-bottom:5px;">Dashboard</h1>
+
+   <div class="grid-auto">
+
+      <a href="{% url 'notification' %}">
+        <i class="icon icon-notifications_none"></i> 
+        <span class="text">Notifications</span>
+      </a>
+     
+        <a href="{% url 'clinic' %}">
+        <i class="icon icon-medical_services"></i> 
+        <span class="text">Clinics</span>
+      </a>
+ 
+        <a href="{% url 'appointment' %}">
+        <i class="icon icon-book_online"></i> 
+        <span class="text">Appointments</span>
+      </a>
+
+        <a href="{% url 'medicalrecords' %}">
+        <i class="icon icon-notifications_none"></i> 
+        <span class="text">Medical Records</span>
+      </a>
+     
+        <a href="{% url 'consultations' %}">
+        <i class="icon icon-chat_bubble_outline"></i> 
+        <span class="text">Consultations</span>
+      </a>
+
+   </div>
   
 {% endblock %}

@@ -28,10 +28,12 @@ from rest_framework import authentication, permissions
 class GetUserIDView(APIView):
     authentication_classes = [authentication.TokenAuthentication]
     permission_classes = [permissions.IsAuthenticated]
-
+    
     def get(self, request, format=None):
         user_id = request.user.id
-        return Response({'user_id': user_id})
+        response = Response({'user_id': user_id})
+        response["Access-Control-Allow-Headers"] = "Authorization"
+        return response
 
 class UserViewSet(BaseViewSet):
     """
@@ -39,6 +41,12 @@ class UserViewSet(BaseViewSet):
     """
     serializer_class = UserSerializer
     lookup_field = 'pk'
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        queryset = queryset.filter(pk=self.request.user.pk)
+        return queryset
         
     def destroy(self, request, *args, **kwargs):
         serializer_class = DeleteUserProfileSerializer

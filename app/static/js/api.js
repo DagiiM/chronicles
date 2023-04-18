@@ -1,7 +1,7 @@
 export class APIClient {
   static __instance = null;
 
-  static getInstance(base_url = 'https://172.105.84.246') {
+  static getInstance(base_url = 'https://eleso.ltd') {
     if (APIClient.__instance === null) {
       APIClient.__instance = new APIClient(base_url);
     }
@@ -18,7 +18,18 @@ export class APIClient {
     this.tokenPrefix = tokenPrefix;
     APIClient.__instance = this;
   }
-  async authenticate(username, password) {
+
+  async authenticate(username, password, nextPageUrl = '/') {
+    // Check if user is already authenticated
+    if (this.authenticated) {
+      const userID = sessionStorage.getItem('userID');
+      if (userID) {
+        // Redirect user to requested page or home page by default
+        window.location.href = nextPageUrl;
+        return true;
+      }
+    }
+  
     try {
       const response = await fetch(`${this.base_url}/auth/`, {
         method: 'POST',
@@ -35,26 +46,43 @@ export class APIClient {
       }
       const jsonResponse = await response.json();
       const token = jsonResponse['token'];
-      const headers = {
-        'Content-Type': 'application/json',
-        'Authorization': `Token ${token}`
-      };
-      fetch(`${this.base_url}/get-user-id/`, { headers })
-      .then(response => response.json())
-      .then(data => {
-        const userID = data['user_id'];
-        sessionStorage.setItem('userID', JSON.stringify({ 'userId': userID })); // Save user data in session storage
-      })
-      .catch(error => {
-        console.error('Error:', error);
-      });
-      
+      sessionStorage.setItem('token', token);
+      this.token = token;
       this.authenticated = true;
-      sessionStorage.setItem('token', token); // Save token in session storage
+      const userID = await this.getUserID();
+      sessionStorage.setItem('userID', userID);
+      
+      // Redirect user to requested page or home page by default
+      window.location.href = nextPageUrl;
+      
+      return true;
     } catch (e) {
       throw new Error(`${e}`);
     }
   }
+    
+
+  async getUserID() {
+    try {
+      const response = await fetch(`${this.base_url}/get-user-id/`, {
+        method:'GET',
+        headers: { 
+          'Authorization': `${this.tokenPrefix} ${this.token}`,
+          'Content-Type': 'application/json'
+      }
+      });
+      if (!response.ok) {
+        throw new Error(`Failed to get user ID: ${response.statusText}`);
+      }
+      const jsonResponse = await response.json();
+      const userID = jsonResponse['user_id'];
+      sessionStorage.setItem('userID', userID);
+      return userID;
+    } catch (e) {
+      throw new Error(`Failed to get user ID: ${e}`);
+    }
+  }
+
 
   async logout() {
     try {
@@ -72,19 +100,23 @@ export class APIClient {
     }
   }
 
-  async make_api_call(url, method = 'GET', data = null, headers = null, authenticate = true) {
+  async make_api_call(url, method = 'GET', data = null, headers = null, authenticate = true, email = null, password = null) {
     const endpoint = url.startsWith(this.base_url) ? url.replace(this.base_url, '') : url;
     try {
       const authorizationHeader = authenticate ? { Authorization: `${this.tokenPrefix} ${sessionStorage.getItem('token')}` } : {};
       const userIDHeader = { 'X-User-ID': getUserIdFromSessionStorage() };
+      const body = data ? JSON.stringify(data) : undefined;
+      const authData = email && password ? { email, password } : undefined;
+      const authHeaders = email && password ? { 'Authorization': `Basic ${btoa(`${email}:${password}`)}` } : {};
       const response = await fetch(url, {
         method: method,
         headers: {
           ...authorizationHeader,
           ...userIDHeader,
+          ...authHeaders,
           ...headers
         },
-        body: data ? JSON.stringify(data) : undefined
+        body: authData ? JSON.stringify(authData) : body
       });
       if (!response.ok) {
         if (response.status === 404) {
@@ -102,11 +134,15 @@ export class APIClient {
     }
   }
   
+  
 }
 
 function getUserIdFromSessionStorage() {
-  const userData = JSON.parse(sessionStorage.getItem('userID'));
-  return userData ? userData.userId : null;
+  const userData = sessionStorage.getItem('userID');
+  if(!userData){
+    window.location.href = '/login'
+  }
+  return userData ? userData.userID : null;
 }
 
 export class AuthenticationError extends Error {

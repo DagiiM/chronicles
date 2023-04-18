@@ -1,17 +1,29 @@
 from app.views import BaseViewSet
-from .models import Consultation
 from .serializers import ConsultationSerializer
 from authentication.models import User
 from django.db.models import Q
 from rest_framework.response import Response
 from rest_framework import status
-
+from rest_framework import permissions
 
 class ConsultationViewSet(BaseViewSet):
     serializer_class = ConsultationSerializer
     ordering = 'pk'
+    permission_classes = [permissions.IsAuthenticated]
+    
+    def get_queryset(self):
+        # get the existing queryset
+        queryset = super().get_queryset()
+
+        # filter consultations where recipient and sender are the currently logged-in user
+        user = self.request.user
+        
+        queryset = queryset.filter(Q(sender=user)|Q(recipient=user))
+
+        return queryset
     
     def create(self, request, *args, **kwargs):
+        sender = self.request.user
         # check if request has bot:true
         if request.data.get('bot') == 'true':
             # retrieve staff user with specified details
@@ -23,6 +35,7 @@ class ConsultationViewSet(BaseViewSet):
             # set recipient field of Consultation object to staff user
             consultation_data = request.data.copy()
             consultation_data['recipient'] = staff_user.id
+            consultation_data['sender'] = sender.pk
             serializer = self.serializer_class(data=consultation_data)
             serializer.is_valid(raise_exception=True)
             self.perform_create(serializer)

@@ -168,6 +168,7 @@ async function loadConsultations(endpoint, sender) {
           window.scrollTo(0, chatBox.scrollHeight)
         }
       }, 5000);
+      
     } catch (e) {
       console.error('Error loading consultations:', e);
     }

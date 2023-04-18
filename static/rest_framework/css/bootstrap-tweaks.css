@@ -35,10 +35,9 @@ a single block in the template.
 }
 
 .navbar {
-  background: #2C2C2C;
+  background: #a32a29;
   color: white;
   border: none;
-  border-top: 5px solid #A30000;
   border-radius: 0px;
 }
 

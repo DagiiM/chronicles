@@ -2,7 +2,6 @@ import datetime
 from rest_framework import status
 from rest_framework.decorators import action
 from rest_framework.response import Response
-from rest_framework.viewsets import ModelViewSet
 from .models import Clinic,ClinicAvailability
 from app.views import BaseViewSet
 from .serializers import ClinicSerializer,AppointmentTypeSerializer, ManagementSerializer, LocationSerializer, BasicInfoSerializer
@@ -14,7 +13,6 @@ from datetime import datetime, timedelta
 from about.serializers import AboutSerializer
 from django.contrib.contenttypes.models import ContentType
 from about.models import About
-from django.db.models import Subquery, OuterRef, Prefetch
 from django.shortcuts import get_object_or_404
 from django.core.exceptions import ValidationError
 
@@ -134,6 +132,16 @@ class ClinicViewSet(BaseViewSet):
 class AppointmentViewSet(BaseViewSet):
     serializer_class = AppointmentSerializer
     permission_classes = [permissions.IsAuthenticated]
+    
+    def get_queryset(self):
+        # get the existing queryset
+        queryset = super().get_queryset()
+
+        # filter appointments for logged-in user
+        user = self.request.user
+        queryset = queryset.filter(patient=user)
+
+        return queryset
 
 
     def perform_create(self, serializer):
