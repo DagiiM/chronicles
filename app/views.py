@@ -1,4 +1,4 @@
-from rest_framework import viewsets
+from rest_framework import permissions, viewsets
 from .pagination import CustomPagination
 
 class BaseViewSet(viewsets.ModelViewSet):
@@ -32,5 +32,11 @@ class BaseViewSet(viewsets.ModelViewSet):
             return self.serializer_class
         return self.serializer_class
 
-
+def allow_any(func):
+    def wrapper(*args, **kwargs):
+        self = args[0]
+        if self.request.method == 'POST':
+            self.permission_classes = [permissions.AllowAny]
+        return func(*args, **kwargs)
+    return wrapper
 

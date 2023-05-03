@@ -40,7 +40,7 @@ def medicalrecords(request):
 def consultations(request):
     tabs = [
         {'id': 'tab1', 'title': 'Consult', 'template_name': 'consultations/consult.html'},
-        {'id': 'tab2', 'title': 'About Consultations', 'template_name': 'consultations/about_consultations.html'},
+        #{'id': 'tab2', 'title': 'About Consultations', 'template_name': 'consultations/about_consultations.html'},
 
     ]
     context = {'tabs': tabs}

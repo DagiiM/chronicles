@@ -16,7 +16,7 @@ from authentication.models import User
 from .serializers import (UserSerializer, DeleteUserProfileSerializer,
                           PasswordResetSerializer, PasswordChangeSerializer,
                           LoginSerializer, PasswordResetConfirmSerializer)
-from app.views import BaseViewSet
+from app.views import BaseViewSet,allow_any
 from app.serializers import BaseSerializer, SearchSerializer
 from clinics.models import Clinic
 from clinics.serializers import ClinicSerializer
@@ -41,12 +41,16 @@ class UserViewSet(BaseViewSet):
     """
     serializer_class = UserSerializer
     lookup_field = 'pk'
-    permission_classes = [permissions.IsAuthenticated]
+    #permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
         queryset = super().get_queryset()
         queryset = queryset.filter(pk=self.request.user.pk)
         return queryset
+    
+    @allow_any
+    def create(self, request, *args, **kwargs):
+        return super().create(request, *args, **kwargs)
         
     def destroy(self, request, *args, **kwargs):
         serializer_class = DeleteUserProfileSerializer

@@ -17,7 +17,7 @@ OPENAI_API_KEY = config('OPENAI_API_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', False)
 
-ALLOWED_HOSTS = ['127.0.0.1','172.105.84.246','localhost','https://eleso.ltd']
+ALLOWED_HOSTS = ['127.0.0.1','172.105.84.246','localhost','eleso.ltd']
 CSRF_TRUSTED_ORIGINS = ['http://172.105.84.246','https://eleso.ltd']
 CORS_ALLOW_CREDENTIALS = True
 
@@ -63,7 +63,7 @@ MIDDLEWARE = [
     #'utils.middleware.my_exception_handler',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',    
-    'app.middleware.TokenAuthMiddleware',
+    'app.middleware.TokenAuthMiddleware'
     
 ]
 
@@ -224,6 +224,7 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
         #'rest_framework.authentication.BasicAuthentication',
         #'rest_framework.authentication.SessionAuthentication',
+        #'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
     #'EXCEPTION_HANDLER': 'app.exceptions.my_exception_handler'
 }
@@ -289,3 +290,26 @@ CKEDITOR_CONFIGS = {
         'width': '100%',
     },
 }
+
+
+'''
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=15),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+    'ROTATE_REFRESH_TOKENS': True,
+    'BLACKLIST_AFTER_ROTATION': True,
+
+    'ALGORITHM': 'HS256',
+    'SIGNING_KEY': SECRET_KEY,
+    'VERIFYING_KEY': None,
+    'AUDIENCE': None,
+    'ISSUER': None,
+
+    'AUTH_HEADER_TYPES': ('Bearer',),
+    'AUTH_HEADER_NAME': 'HTTP_AUTHORIZATION',
+    'USER_ID_FIELD': 'id',
+    'USER_ID_CLAIM': 'user_id',
+    'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
+    'TOKEN_TYPE_CLAIM': 'token_type',
+}
+'''
