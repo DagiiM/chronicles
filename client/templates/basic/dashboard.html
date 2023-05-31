@@ -1,5 +1,28 @@
 {% extends 'base.html' %}
+{% block css %}
+<style>
+  .grid-auto{
+    justify-items: inherit;
+    margin-inline: 5px;
+  }
+  .grid-auto a{
+   text-decoration: none; 
+   border-radius:5px;
+   padding:8px 5px;
+   background-color:var(--sidebar-color);
+   color:var(--text-color);
+   transition: var(--tran-03);
+  }
+  .grid-auto a:hover{
+    color:var(--sidebar-color);
+    background-color: var(--brand-color);
+  }
+  body.dark .grid-auto a:hover{
+    color:var(--text-color);
+  }
 
+</style>
+{% endblock %}
 {% block content %}
    <h1 style="text-align:center;padding-bottom:5px;">Dashboard</h1>
 
